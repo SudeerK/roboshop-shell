@@ -15,10 +15,10 @@ N="\e[0m"  #Normal color
 
 if [ $ID -ne 0 ]
 then
-echo -e "$R Not a root user"
+echo -e "$R Not a root user $N"
 exit 1
 else 
-echo -e "$G logged in as root user"
+echo -e "$G logged in as root user $N "
 fi
 
 VALIDATE()
