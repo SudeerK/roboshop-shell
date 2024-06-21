@@ -8,20 +8,25 @@ echo "ScriptName is : $0"
 TimeStamp=$( date +%F-%H-%M-%S )
 LOGFILE="/tmp/$0-$TimeStamp.log"
 
+R="\e[31m" #Red
+G="\e[32m" #Green
+Y="\e[33m" #Yellow
+N="\e[0m"  #Normal color
+
 if [ $ID -ne 0 ]
 then
-echo "Not a root user"
+echo -e "$R Not a root user"
 else 
-echo "logged in as root user"
+echo -e "$G logged in as root user"
 fi
 
 VALIDATE()
 {
 if [ $1 -ne 0 ]
 then 
-echo "$2 - Failed"
+echo -e "$2 - $R Failed $N"
 else 
-echo "$2 - Passed"
+echo -e "$2 - $G Passed $N"
 fi
 }
 cp mongo.repo /etc/yum.repos.d/mongo.repo &>> $LOGFILE
