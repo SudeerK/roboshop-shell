@@ -16,6 +16,7 @@ N="\e[0m"  #Normal color
 if [ $ID -ne 0 ]
 then
 echo -e "$R Not a root user"
+exit 1
 else 
 echo -e "$G logged in as root user"
 fi
@@ -30,7 +31,7 @@ echo -e "$2 - $G Passed $N"
 fi
 }
 cp mongo.repo /etc/yum.repos.d/mongo.repo &>> $LOGFILE
-VALIDATE $?,"Copying of Mongo DB Repo"
+VALIDATE $? "Copying of Mongo DB Repo"
 
 dnf install mongodb-org -y &>>$LOGFILE
 VALIDATE $? "Installing of Mongo DB"
