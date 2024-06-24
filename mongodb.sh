@@ -28,7 +28,7 @@ VALIDATE ()
     then
     echo -e "$2 - is $R unsuccessful $N"
     else
-    echo -e "$2 - is $G Successful"
+    echo -e "$2 - is $G Successful $N"
     fi
 }
 cp mongo.repo /etc/yum.repos.d/mongo.repo &>>$LogFile
