@@ -29,18 +29,7 @@ VALIDATE ()
     echo -e "$2 - is $R unsuccessful $N"
     else
     echo -e "$2 - is $G Successful"
+    fi
 }
 cp mongo.repo /etc/yum.repos.d/mongo.repo &>>$LogFile
 VALIDATE $? "Copying of Mongo Repo"
-
-
-
-
-
-
-
-
-
-
-
-
