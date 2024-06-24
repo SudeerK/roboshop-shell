@@ -16,10 +16,10 @@ LogFile="/tmp/$0-$TimeStamp.log"
 
 if ($ID -ne 0)
 then 
-echo -e "$G Error:: Not a root user $N"
+echo -e "$R Error:: Not a root user $N"
 exit 1
 else
-echo -e "$R Logged in as root user $N"
+echo -e "$G Logged in as root user $N"
 fi
 
 VALIDATE ()
@@ -43,35 +43,4 @@ VALIDATE $? "Copying of Mongo Repo"
 
 
 
-
-
-
-
-ID=$( id -u )
-echo "The value of ID: $ID"
-
-TIMESTAMP=$(date +%F-%H-%M-%S)
-LOGFILE="/tmp/$0-$TIMESTAMP.log"
-
-echo "Script started executing at : $TIMESTAMP"
-
-VALIDATE ()
-{
-    if ( $1 -ne 0 )
-    then 
-    echo "$2 .. FAILED"
-    else
-    echo "$2 .. PASSED"
-    fi
-}
-if [ $ID -ne 0 ]
-echo " ERROR:: Not a root user"
-exit 1
-else
-echo " Logged in as root user"
-fi
-
-cp mongo.repo /etc/yum.repos.d/mongo.repo &>> $LOGFILE
-
-VALIDATE $? "Copying of MongoDB Repo"
 
