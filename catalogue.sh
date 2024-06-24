@@ -24,7 +24,7 @@ else
 echo "Logged in as root user"
 fi
 
-dnf module disable nodejs -y
+dnf module disable nodejs -y &>>$LogFile
 VALIDATE $? "NodeJS is disabled"
-dnf module enable nodejs:18 -y
+dnf module enable nodejs:18 -y &>>$LogFile
 VALIDATE $? "NodeJS 18 is enabled"
