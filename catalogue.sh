@@ -29,6 +29,5 @@ VALIDATE $? "NodeJS is disabled"
 dnf module enable nodejs:18 -y &>>$LogFile
 VALIDATE $? "NodeJS 18 is enabled"
 
-dnf install nodejs -y
-
-useradd roboshop
+dnf install nodejs -y &>>$LogFile
+VALIDATE $? "NodeJS is installed"
