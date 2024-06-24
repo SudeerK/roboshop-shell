@@ -3,7 +3,7 @@
 ID=$( id -u )
 echo "Value of ID is : $ID"
 echo "Script Name is : $0"
-TimeStamp=(date +%F-%H-%M-%S)
+TimeStamp=$(date +%F-%H-%M-%S)
 echo "The script execution started at : $TimeStamp"
 LogFile
 if [ $ID -ne 0 ]
