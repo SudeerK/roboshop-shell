@@ -15,6 +15,7 @@ VALIDATE ()
     echo "$1 is unsuccessful"
     else
     echo "$2 is successful"
+    fi
 }
 if [ $ID -ne 0 ]
 then 
