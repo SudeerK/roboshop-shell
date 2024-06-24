@@ -14,7 +14,7 @@ echo "Script execution started at $TimeStamp"
 
 LogFile="/tmp/$0-$TimeStamp.log"
 
-if [ $ID -ne 0 ]
+if ($ID -ne 0)
 then 
 echo -e "$R Error:: Not a root user $N"
 exit 1
