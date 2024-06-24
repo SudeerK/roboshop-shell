@@ -34,14 +34,13 @@ VALIDATE ()
 cp mongo.repo /etc/yum.repos.d/mongo.repo &>>$LogFile
 VALIDATE $? "Copying of Mongo Repo"
 
-dnf list installed mongodb-org &>>$LogFile
-
+dnf list installed mongodb-org &>>$LogFile #trying to improvise by checking if package is already installed
 
 if [ $? -ne 0 ]
 then
 dnf install mongodb-org -y &>>LogFile.log
 else 
-echo "Package is already installed"
+echo "$Y Package is already installed $N"
 fi
 
 VALIDATE $? "MongoDB installation"
