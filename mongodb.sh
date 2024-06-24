@@ -34,8 +34,8 @@ VALIDATE ()
 cp mongo.repo /etc/yum.repos.d/mongo.repo &>>$LogFile
 VALIDATE $? "Copying of Mongo Repo"
 
-dnf list installed mongodb-org &>>$Logfile
-echo "$?"
+dnf list installed mongodb-org &>>$LogFile
+
 
 if [ $? -ne 0 ]
 then
