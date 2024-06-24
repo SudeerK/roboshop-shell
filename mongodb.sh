@@ -16,19 +16,19 @@ LogFile="/tmp/$0-$TimeStamp.log"
 
 if ($ID -ne 0)
 then 
-echo "$G Error:: Not a root user $N"
+echo -e "$G Error:: Not a root user $N"
 exit 1
 else
-echo "$R Logged in as root user $N"
+echo -e "$R Logged in as root user $N"
 fi
 
 VALIDATE ()
 {
     if ($? -ne 0)
     then
-    echo "$2 - is $R unsuccessful $N"
+    echo -e "$2 - is $R unsuccessful $N"
     else
-    echo "$2 - is $G Successful"
+    echo -e "$2 - is $G Successful"
 }
 cp mongo.repo /etc/yum.repos.d/mongo.repo &>>$LogFile
 VALIDATE $? "Copying of Mongo Repo"
