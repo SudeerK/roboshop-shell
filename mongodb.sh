@@ -14,7 +14,7 @@ echo "Script execution started at $TimeStamp"
 
 LogFile="/tmp/$0-$TimeStamp.log"
 
-if ($ID -ne 0)
+if [ $ID -ne 0 ]
 then 
 echo -e "$R Error:: Not a root user $N"
 exit 1
@@ -24,7 +24,7 @@ fi
 
 VALIDATE ()
 {
-    if ($1 -ne 0)
+    if [ $1 -ne 0 ]
     then
     echo -e "$2 - is $R unsuccessful $N"
     else
