@@ -12,9 +12,9 @@ VALIDATE ()
 {
     if [ $1 -ne 0 ]
     then
-    echo "$1 is unsuccessful"
+    echo "$1 unsuccessful"
     else
-    echo "$2 is successful"
+    echo "$2 successfully"
     fi
 }
 if [ $ID -ne 0 ]
