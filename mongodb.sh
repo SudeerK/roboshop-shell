@@ -40,7 +40,7 @@ if [ $? -ne 0 ]
 then
 dnf install mongodb-org -y &>>LogFile.log
 else 
-echo "$Y Package is already installed $N"
+echo -e "$Y Package is already installed $N"
 fi
 
 VALIDATE $? "MongoDB installation"
