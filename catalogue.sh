@@ -12,9 +12,9 @@ VALIDATE ()
 {
     if [ $1 -ne 0 ]
     then
-    echo "$1 unsuccessful"
+    echo "$1 Failed"
     else
-    echo "$2 successfully"
+    echo "$2 Passed"
     fi
 }
 if [ $ID -ne 0 ]
@@ -25,9 +25,49 @@ echo "Logged in as root user"
 fi
 
 dnf module disable nodejs -y &>>$LogFile
-VALIDATE $? "NodeJS is disabled"
+VALIDATE $? "Disabling NodeJS"
 dnf module enable nodejs:18 -y &>>$LogFile
-VALIDATE $? "NodeJS 18 is enabled"
+VALIDATE $? "Enabling NodeJS 18"
 
 dnf install nodejs -y &>>$LogFile
-VALIDATE $? "NodeJS is installed"
+VALIDATE $? "Installing NodeJS"
+
+useradd roboshop &>>$LogFile
+VALIDATE $? "Creating RoboShop user"
+
+mkdir /app  &>>$LogFile
+VALIDATE $? "Creating App Directory"
+
+curl -o /tmp/catalogue.zip https://roboshop-builds.s3.amazonaws.com/catalogue.zip
+VALIDATE $? "Downloading Catalogue application"
+
+cd /app 
+unzip /tmp/catalogue.zip  &>>$LogFile
+VALIDATE $? "Unziping Catalogue application"
+
+cd /app
+
+npm install  &>>$LogFile
+VALIDATE $? "Installing dependencies"
+
+#currently we are in cd /app location, but our catalogue.service is in another location. Hence use absolute path.
+cp /home/centos/roboshop-shell/catalogue.service /etc/systemd/system/catalogue.service  &>>$LogFile
+VALIDATE $? "Copying of Catalogue Service"
+
+systemctl daemon-reload  &>>$LogFile
+VALIDATE $? "Catalogue Daemon Reload"
+
+systemctl enable catalogue  &>>$LogFile
+VALIDATE $? "Enabling Catalogue Service"
+
+systemctl start catalogue  &>>$LogFile
+VALIDATE $? "Starting Catalogue Service"
+
+cp /home/centos/roboshop-shell/mongo.repo /etc/yum.repos.d/mongo.repo &>>$LogFile
+VALIDATE $? "Copying of MongoDB Repo"
+
+dnf install mongodb-org-shell -y
+VALIDATE $? "Intalling MongoDB Shell"
+
+mongo --host MONGODB-SERVER-IPADDRESS </app/schema/catalogue.js
+VALIDATE $? "Loading Catalogue Data into MongoDB"
