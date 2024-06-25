@@ -9,21 +9,26 @@ LogFile="/tmp/$0-$TimeStamp.log"
 echo "LogFile name is :$LogFile"
 
 MONGODB_HOST=mongo1.sudeer.cloud
+R="\e[31m" #Red Color
+G="\e[32m" #Green Color
+Y="\e[33m" #Yellow
+N="\e[0m"  #Normal Color
+
 VALIDATE ()
 {
     if [ $1 -ne 0 ]
     then
-    echo "$1 Failed"
-    exit 1
+    echo -e "$1..$R Failed$N"
+    #exit 1
     else
-    echo "$2 Passed"
+    echo -e "$2 $G Passed$N"
     fi
 }
 if [ $ID -ne 0 ]
 then 
-echo "Error:: Not a root user"
+echo -e "$R Error:: Not a root user$N"
 else 
-echo "Logged in as root user"
+echo -e "$G Logged in as root user$N"
 fi
 
 dnf module disable nodejs -y &>>$LogFile
