@@ -82,7 +82,7 @@ VALIDATE $? "Starting Catalogue Service"
 cp /home/centos/roboshop-shell/mongo.repo /etc/yum.repos.d/mongo.repo &>>$LogFile
 VALIDATE $? "Copying of MongoDB Repo"
 
-dnf install mongodb-org-shell -y
+dnf install mongodb-org-shell -y &>>$LogFile
 VALIDATE $? "Intalling MongoDB Shell"
 
 mongo --host $MONGODB_HOST </app/schema/catalogue.js
