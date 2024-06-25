@@ -8,6 +8,7 @@ echo "The script execution started at : $TimeStamp"
 LogFile="/tmp/$0-$TimeStamp.log"
 echo "LogFile name is :$LogFile"
 
+MONGODB_HOST=mongo1.sudeer.cloud
 VALIDATE ()
 {
     if [ $1 -ne 0 ]
@@ -27,23 +28,32 @@ fi
 
 dnf module disable nodejs -y &>>$LogFile
 VALIDATE $? "Disabling NodeJS"
+
 dnf module enable nodejs:18 -y &>>$LogFile
 VALIDATE $? "Enabling NodeJS 18"
 
 dnf install nodejs -y &>>$LogFile
 VALIDATE $? "Installing NodeJS"
 
+#id roboshop
+#if [$? -ne 0 ]
+#then
 useradd roboshop &>>$LogFile
-VALIDATE $? "Creating RoboShop user"
+VALIDATE $? "RoboShop user creation"
+#else 
+#echo "Roboshop user already exits.. Skipping"
+#fi
 
 mkdir /app  &>>$LogFile
+# mkdir -p /app &>>$LogFile #If dir available then it will not create else will create.
+
 VALIDATE $? "Creating App Directory"
 
 curl -o /tmp/catalogue.zip https://roboshop-builds.s3.amazonaws.com/catalogue.zip
 VALIDATE $? "Downloading Catalogue application"
 
 cd /app 
-unzip /tmp/catalogue.zip  &>>$LogFile
+unzip -o /tmp/catalogue.zip  &>>$LogFile #unzip -o means it will overwrite without any prompting
 VALIDATE $? "Unziping Catalogue application"
 
 cd /app
@@ -70,5 +80,5 @@ VALIDATE $? "Copying of MongoDB Repo"
 dnf install mongodb-org-shell -y
 VALIDATE $? "Intalling MongoDB Shell"
 
-mongo --host MONGODB-SERVER-IPADDRESS </app/schema/catalogue.js
+mongo --host $MONGODB_HOST </app/schema/catalogue.js
 VALIDATE $? "Loading Catalogue Data into MongoDB"
