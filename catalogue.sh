@@ -46,7 +46,7 @@ then
 useradd roboshop &>>$LogFile
 VALIDATE $? "RoboShop user creation"
 else 
-echo "Roboshop user already exits.. $Y Skipping $N"
+echo -e "Roboshop user already exists.. $Y Skipping $N"
 fi
 
 #mkdir /app  &>>$LogFile
