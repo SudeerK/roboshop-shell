@@ -40,17 +40,17 @@ VALIDATE $? "Enabling NodeJS 18"
 dnf install nodejs -y &>>$LogFile
 VALIDATE $? "Installing NodeJS"
 
-#id roboshop
-#if [$? -ne 0 ]
-#then
+id roboshop #Check for roboshop user already exits
+if [$? -ne 0 ]
+then
 useradd roboshop &>>$LogFile
 VALIDATE $? "RoboShop user creation"
-#else 
-#echo "Roboshop user already exits.. Skipping"
-#fi
+else 
+echo "Roboshop user already exits.. $Y Skipping $N"
+fi
 
-mkdir /app  &>>$LogFile
-# mkdir -p /app &>>$LogFile #If dir available then it will not create else will create.
+#mkdir /app  &>>$LogFile
+mkdir -p /app &>>$LogFile #If dir available then it will not create else will create.
 
 VALIDATE $? "Creating App Directory"
 
