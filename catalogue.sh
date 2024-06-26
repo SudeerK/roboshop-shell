@@ -43,7 +43,7 @@ VALIDATE $? "Installing NodeJS"
 #id roboshop #Check for roboshop user already exits
 #if [$? -ne 0 ]
 #then
-useradd roboshop &>>$LogFile
+useradd roboshop #&>>$LogFile
 VALIDATE $? "RoboShop user creation"
 #else 
 #echo -e "Roboshop user already exists.. $Y Skipping $N"
