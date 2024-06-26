@@ -54,3 +54,6 @@ VALIDATE $? "Starting of MongoDB"
 
 sed  -i "s/127.0.0.1/0.0.0.0/g" /etc/mongod.conf &>>LogFile.log #sed -i means permanent. sed -e is temporary
 VALIDATE $? "Remote Access to Mongo DB"
+
+systemctl restart mongod
+VALIDATE $? "Restarting of Mongo DB"
