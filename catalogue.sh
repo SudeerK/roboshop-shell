@@ -8,7 +8,7 @@ echo "The script execution started at : $TimeStamp"
 LogFile="/tmp/$0-$TimeStamp.log"
 echo "LogFile name is :$LogFile"
 
-MONGODB_HOST=mongo1.sudeer.cloud
+MONGODB_HOST=mongo.sudeer.cloud
 R="\e[31m" #Red Color
 G="\e[32m" #Green Color
 Y="\e[33m" #Yellow
